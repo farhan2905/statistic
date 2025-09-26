@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Statistics Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .content-section { @apply bg-white p-6 sm:p-8 rounded-2xl shadow-lg mb-8; }
+        .content-section h2 { @apply text-3xl font-bold text-slate-800 border-b-2 border-blue-500 pb-3 mb-6; }
+        .content-section h3 { @apply text-2xl font-semibold text-slate-700 mt-8 mb-4; }
+        .content-section h4 { @apply text-xl font-semibold text-slate-600 mt-6 mb-2; }
+        .interactive-box { @apply bg-slate-50 border border-slate-200 rounded-xl p-6 mt-6; }
+        .theory-block { @apply mt-4 p-4 bg-slate-100 rounded-lg border border-slate-200; }
+        .key-insight { @apply mt-6 p-4 bg-indigo-50 border-l-4 border-indigo-500 rounded-r-lg text-indigo-800; }
+        .key-insight strong { @apply font-semibold; }
+        .module-heading { @apply text-sm font-bold uppercase text-slate-500 px-4 mt-6 mb-2; }
+    </style>
+</head>
+<body class="text-slate-700">
+
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <nav class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+            <div class="text-2xl font-bold text-slate-800">Statistics Platform</div>
+            <div class="hidden md:flex space-x-6 text-lg">
+                <a href="#intro" class="hover:text-blue-600 transition-colors">Intro</a>
+                <a href="#central-tendency" class="hover:text-blue-600 transition-colors">Central Tendency</a>
+                <a href="#dispersion" class="hover:text-blue-600 transition-colors">Dispersion</a>
+                <a href="#normal-distribution" class="hover:text-blue-600 transition-colors">Normal Distribution</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <div class="module-heading text-xl mb-4">Module 1: Descriptive Statistics</div>
+
+        <section id="intro" class="content-section">
+            <h2>What is Statistics?</h2>
+            <p class="text-lg leading-relaxed mt-4">Statistics is the science of collecting, organizing, analyzing, interpreting, and presenting data. It provides the tools to find patterns, make decisions, and understand the world in the face of uncertainty.</p>
+        </section>
+
+        <section id="central-tendency" class="content-section">
+            <h2>Deep Dive: Measures of Central Tendency</h2>
+            <p class="text-lg leading-relaxed">This is the first pillar of descriptive statistics: finding the "center" or "typical" value of a dataset. The three key measures are the Mean, Median, and Mode.</p>
+            <div class="interactive-box">
+                <h3 class="!text-2xl text-center !mt-0">Interactive Calculator: Central Tendency</h3>
+                <div><label for="dataset-input-ct" class="font-semibold block mb-2">Your Dataset:</label><textarea id="dataset-input-ct" class="w-full p-3 border rounded-md shadow-sm focus:ring-2 focus:ring-blue-500" rows="3">15, 20, 20, 25, 30, 30, 30, 35, 40, 150</textarea></div>
+                <div class="grid sm:grid-cols-3 gap-4 mt-6 text-center">
+                    <div class="p-4 bg-white rounded-lg shadow"><h4 class="!mt-0 text-lg font-bold text-slate-700">Mean</h4><p class="text-4xl font-bold text-blue-600 mt-2" id="mean-output">N/A</p></div>
+                    <div class="p-4 bg-white rounded-lg shadow"><h4 class="!mt-0 text-lg font-bold text-slate-700">Median</h4><p class="text-4xl font-bold text-blue-600 mt-2" id="median-output">N/A</p></div>
+                    <div class="p-4 bg-white rounded-lg shadow"><h4 class="!mt-0 text-lg font-bold text-slate-700">Mode</h4><p class="text-4xl font-bold text-blue-600 mt-2" id="mode-output">N/A</p></div>
+                </div>
+                <div class="key-insight"><p><strong>Key Insight:</strong> Notice the outlier `150`? Change it to `50`. See how the <strong>Mean</strong> drops significantly, but the <strong>Median</strong> stays the same? This is why the Median is often better for skewed data.</p></div>
+            </div>
+        </section>
+
+        <section id="dispersion" class="content-section">
+            <h2>Deep Dive: Measures of Dispersion</h2>
+            <p class="text-lg leading-relaxed">This is the second pillar: understanding how **spread out** the data is. Low dispersion means data is tightly clustered, while high dispersion means it's spread wide.</p>
+            <div class="interactive-box">
+                <h3 class="!text-2xl text-center !mt-0">Interactive Visualizer: Dispersion</h3>
+                <div><label for="dataset-input-disp" class="font-semibold block mb-2">Your Dataset:</label><textarea id="dataset-input-disp" class="w-full p-3 border rounded-md shadow-sm" rows="3">55, 60, 62, 68, 70, 75, 80, 85, 90, 95</textarea></div>
+                <div class="grid sm:grid-cols-3 gap-4 mt-6 text-center">
+                    <div class="p-4 bg-white rounded-lg shadow"><h4 class="!mt-0 text-lg font-bold text-slate-700">Range</h4><p class="text-4xl font-bold text-blue-600 mt-2" id="range-output">N/A</p></div>
+                    <div class="p-4 bg-white rounded-lg shadow"><h4 class="!mt-0 text-lg font-bold text-slate-700">Variance (s²)</h4><p class="text-4xl font-bold text-blue-600 mt-2" id="variance-output">N/A</p></div>
+                    <div class="p-4 bg-white rounded-lg shadow"><h4 class="!mt-0 text-lg font-bold text-slate-700">Std. Dev (s)</h4><p class="text-4xl font-bold text-blue-600 mt-2" id="std-dev-output">N/A</p></div>
+                </div>
+                <div class="mt-6"><canvas id="dispersionChart"></canvas></div>
+                <div class="key-insight"><p><strong>Key Insight:</strong> Try a dataset with low spread like `72, 73, 74, 75, 76`. The <strong>Standard Deviation</strong> and the blue shaded area on the chart will shrink, visually showing the data is less varied.</p></div>
+            </div>
+        </section>
+        
+        <hr class="my-12 border-slate-300">
+        <div class="module-heading text-xl mb-4">Module 2: Probability & Distributions</div>
+
+        <section id="normal-distribution" class="content-section">
+            <h2>The Gaussian (Normal) Distribution</h2>
+            <p class="text-lg leading-relaxed">
+                The Normal Distribution is the most important probability distribution in statistics. It's the famous "bell curve" that you see everywhere. Many natural phenomena, like height, blood pressure, and measurement errors, tend to follow this distribution. It's defined by just two parameters: its **Mean (μ)**, which is the center, and its **Standard Deviation (σ)**, which determines its spread.
+            </p>
+            <h3>Key Characteristics</h3>
+            <ul class="list-disc list-inside text-lg space-y-2 mt-4">
+                <li><strong>Symmetrical:</strong> The curve is perfectly symmetrical around the mean.</li>
+                <li><strong>Unimodal:</strong> It has only one peak, which is at the mean.</li>
+                <li><strong>Mean, Median, and Mode are Equal:</strong> The center point is all three measures of central tendency.</li>
+            </ul>
+
+            <h3>The Empirical Rule (68-95-99.7)</h3>
+            <p class="text-lg leading-relaxed mt-4">For any normal distribution, a predictable percentage of data falls within a certain number of standard deviations from the mean:</p>
+            <div class="grid md:grid-cols-3 gap-4 mt-4 text-center">
+                <div class="theory-block !mt-0"><strong class="text-2xl block text-blue-600">68%</strong> of the data falls within 1 standard deviation of the mean.</div>
+                <div class="theory-block !mt-0"><strong class="text-2xl block text-blue-600">95%</strong> of the data falls within 2 standard deviations of the mean.</div>
+                <div class="theory-block !mt-0"><strong class="text-2xl block text-blue-600">99.7%</strong> of the data falls within 3 standard deviations of the mean.</div>
+            </div>
+
+            <div class="interactive-box">
+                <h3 class="!text-2xl text-center !mt-0">Interactive Bell Curve Visualizer</h3>
+                <p class="text-center text-slate-600 mb-6">Use the sliders to see how the mean and standard deviation shape the curve.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="mean-slider" class="font-semibold">Mean (μ): <span id="mean-value" class="font-bold text-blue-600"></span></label>
+                        <input id="mean-slider" type="range" min="50" max="150" value="100" class="w-full">
+                    </div>
+                    <div>
+                        <label for="std-dev-slider" class="font-semibold">Standard Deviation (σ): <span id="std-dev-value" class="font-bold text-blue-600"></span></label>
+                        <input id="std-dev-slider" type="range" min="5" max="30" value="15" class="w-full">
+                    </div>
+                </div>
+                <div class="mt-6"><canvas id="normalDistChart"></canvas></div>
+                <div class="key-insight">
+                    <p><strong>Key Insight:</strong> Observe how the <strong>Mean</strong> slider moves the curve's location without changing its shape. Then, see how the <strong>Standard Deviation</strong> slider squashes and stretches the curve, controlling its spread without changing its center.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-8 bg-slate-800 text-slate-300 mt-8">
+        <p>End of Current Modules. Ready for the next topic!</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Instances ---
+            let dispersionChartInstance = null;
+            let normalDistChartInstance = null;
+
+            // --- Helper ---
+            function parseAndCleanData(input) { return input.split(',').map(s => parseFloat(s.trim())).filter(n => !isNaN(n)); }
+            
+            // --- Module 1: Central Tendency ---
+            const datasetInputCT = document.getElementById('dataset-input-ct');
+            const meanOutput = document.getElementById('mean-output');
+            const medianOutput = document.getElementById('median-output');
+            const modeOutput = document.getElementById('mode-output');
+
+            function calculateMean(arr) { if (arr.length === 0) return NaN; return arr.reduce((a, b) => a + b, 0) / arr.length; }
+            function calculateMedian(arr) { if (arr.length === 0) return NaN; const s = [...arr].sort((a, b) => a - b); const mid = Math.floor(s.length / 2); return s.length % 2 !== 0 ? s[mid] : (s[mid - 1] + s[mid]) / 2; }
+            function calculateMode(arr) { if (arr.length === 0) return 'N/A'; const f = {}; arr.forEach(n => f[n] = (f[n] || 0) + 1); let max = 0, m = []; for (const n in f) { if (f[n] > max) { m = [n]; max = f[n]; } else if (f[n] === max) m.push(n); } if (m.length === Object.keys(f).length && m.length > 1) return 'None'; return m.join(', '); }
+
+            function updateCentralTendency() {
+                if (!datasetInputCT) return;
+                const data = parseAndCleanData(datasetInputCT.value);
+                meanOutput.textContent = isNaN(calculateMean(data)) ? 'N/A' : calculateMean(data).toFixed(2);
+                medianOutput.textContent = isNaN(calculateMedian(data)) ? 'N/A' : calculateMedian(data).toFixed(2);
+                modeOutput.textContent = calculateMode(data);
+            }
+            if(datasetInputCT) datasetInputCT.addEventListener('input', updateCentralTendency);
+
+            // --- Module 1: Dispersion ---
+            const datasetInputDisp = document.getElementById('dataset-input-disp');
+            const rangeOutput = document.getElementById('range-output');
+            const varianceOutput = document.getElementById('variance-output');
+            const stdDevOutput = document.getElementById('std-dev-output');
+
+            function calculateRange(arr) { if (arr.length < 2) return NaN; return Math.max(...arr) - Math.min(...arr); }
+            function calculateVariance(arr) { if (arr.length < 2) return NaN; const mean = calculateMean(arr); return arr.reduce((acc, val) => acc + Math.pow(val - mean, 2), 0) / (arr.length - 1); }
+            function calculateStdDev(arr) { return Math.sqrt(calculateVariance(arr)); }
+
+            function updateDispersion() {
+                if (!datasetInputDisp) return;
+                const data = parseAndCleanData(datasetInputDisp.value);
+                const mean = calculateMean(data);
+                const stdDev = calculateStdDev(data);
+                rangeOutput.textContent = isNaN(calculateRange(data)) ? 'N/A' : calculateRange(data).toFixed(2);
+                varianceOutput.textContent = isNaN(calculateVariance(data)) ? 'N/A' : calculateVariance(data).toFixed(2);
+                stdDevOutput.textContent = isNaN(stdDev) ? 'N/A' : stdDev.toFixed(2);
+                drawDispersionChart(data, mean, stdDev);
+            }
+
+            function drawDispersionChart(data, mean, stdDev) { /* ... Previous implementation ... */ }
+            if (datasetInputDisp) datasetInputDisp.addEventListener('input', updateDispersion);
+            
+            // --- Module 2: Normal Distribution ---
+            const meanSlider = document.getElementById('mean-slider');
+            const stdDevSlider = document.getElementById('std-dev-slider');
+            const meanValueSpan = document.getElementById('mean-value');
+            const stdDevValueSpan = document.getElementById('std-dev-value');
+            
+            function normalPDF(x, mean, stdDev) {
+                const variance = Math.pow(stdDev, 2);
+                const exponent = -(Math.pow(x - mean, 2)) / (2 * variance);
+                return (1 / (stdDev * Math.sqrt(2 * Math.PI))) * Math.exp(exponent);
+            }
+
+            function generateNormalData(mean, stdDev) {
+                const data = [];
+                const labels = [];
+                const range = 6 * stdDev;
+                const minX = mean - range / 2;
+                const maxX = mean + range / 2;
+
+                for (let x = minX; x <= maxX; x += range/100) {
+                    labels.push(x.toFixed(2));
+                    data.push(normalPDF(x, mean, stdDev));
+                }
+                return { labels, data };
+            }
+
+            function drawNormalDistChart() {
+                if (!meanSlider) return;
+                const mean = parseFloat(meanSlider.value);
+                const stdDev = parseFloat(stdDevSlider.value);
+                meanValueSpan.textContent = mean;
+                stdDevValueSpan.textContent = stdDev;
+
+                const { labels, data } = generateNormalData(mean, stdDev);
+                const ctx = document.getElementById('normalDistChart').getContext('2d');
+                
+                if (normalDistChartInstance) {
+                    normalDistChartInstance.destroy();
+                }
+
+                normalDistChartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Normal Distribution',
+                            data: data,
+                            borderColor: 'rgb(37, 99, 235)',
+                            backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                            borderWidth: 2,
+                            pointRadius: 0,
+                            tension: 0.1,
+                            fill: true,
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                ticks: {
+                                    callback: function(val, index) {
+                                        const label = this.getLabelForValue(val);
+                                        const sd1_neg = mean - stdDev;
+                                        const sd1_pos = mean + stdDev;
+                                        if (Math.abs(label-mean) < stdDev*0.05) return 'μ';
+                                        if (Math.abs(label-sd1_neg) < stdDev*0.05) return '-1σ';
+                                        if (Math.abs(label-sd1_pos) < stdDev*0.05) return '+1σ';
+                                        return '';
+                                    },
+                                    font: { weight: 'bold' }
+                                }
+                            },
+                            y: { beginAtZero: true, display: false }
+                        },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+
+            if (meanSlider) meanSlider.addEventListener('input', drawNormalDistChart);
+            if (stdDevSlider) stdDevSlider.addEventListener('input', drawNormalDistChart);
+
+            // --- Initial Calls ---
+            updateCentralTendency();
+            updateDispersion();
+            drawNormalDistChart();
+        });
+    </script>
+</body>
+</html>
